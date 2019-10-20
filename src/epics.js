@@ -35,7 +35,7 @@ export const getGiveawaysRepeatEpic = (action$, _, { ajax }) =>
 
 const fetchGiveaways = ajax =>
   ajax({
-    url: "http://dystortion.tv/api/api/status/giveaways"
+    url: "https://dystortion.tv/api/api/status/giveaways"
   }).pipe(map(({ response }) => getGiveawaysSuccessAction(response)));
 
 export const fetchDonationsEpic = (action$, _, { ajax }) =>
@@ -57,7 +57,7 @@ export const fetchDonationsRepeatEpic = (action$, _, { ajax }) =>
 
 const fetchDonations = ajax =>
   ajax({
-    url: "http://dystortion.tv/api/api/status/donations"
+    url: "https://dystortion.tv/api/api/status/donations"
   }).pipe(map(({ response }) => fetchDonationsSuccessAction(response)));
 
 export const fetchPokemonStatusEpic = (action$, _, { ajax }) =>
@@ -79,5 +79,5 @@ export const fetchPokemonStatusRepeatEpic = (action$, _, { ajax }) =>
 
 const fetchPokemonStatus = ajax =>
   ajax({
-    url: "http://dystortion.tv/api/api/status/pokemon"
+    url: "https://dystortion.tv/api/api/status/pokemon"
   }).pipe(map(({ response }) => fetchPokemonStatusSuccessAction(response)));

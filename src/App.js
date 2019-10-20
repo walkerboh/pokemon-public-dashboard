@@ -4,13 +4,18 @@ import styled from "styled-components/macro";
 import Giveaways from "./components/Giveaways";
 import DonationStatus from "./components/DonationStatus";
 import Pokemon from "./components/Pokemon";
+import Sidebar from "./components/Sidebar";
 
 const Body = styled.div`
-  margin: 0 20%;
+  width: 100%;
+  border: 1px solid black;
+  border-right: 0;
+  border-bottom: 0;
 `;
 
 const Header = styled.div`
   display: flex;
+  background-color: #efefff;
 
   > div {
     display: flex;
@@ -24,22 +29,28 @@ const LogoImg = styled.img`
   height: 150px;
 `;
 
+const CenterRow = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
 function App() {
   return (
-    <Body>
+    <>
       <Header>
         <LogoImg src={logo} alt="Extra Life 2019" />
-        <div>
-          <a href="https://twitch.tv/dystortion">Watch the stream!</a>
-          <a href="https://www.extra-life.org/participant/dystortion">
-            Donate!
-          </a>
-        </div>
+        <DonationStatus />
       </Header>
-      <DonationStatus />
-      <Pokemon />
-      <Giveaways />
-    </Body>
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+        <Body>
+          <CenterRow>
+            <Pokemon />
+            <Giveaways />
+          </CenterRow>
+        </Body>
+      </div>
+    </>
   );
 }
 

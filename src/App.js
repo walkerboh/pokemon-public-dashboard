@@ -16,6 +16,7 @@ const Body = styled.div`
 const Header = styled.div`
   display: flex;
   background-color: #efefff;
+  height: 16%;
 
   > div {
     display: flex;
@@ -26,7 +27,8 @@ const Header = styled.div`
 `;
 
 const LogoImg = styled.img`
-  height: 150px;
+  max-height: 100%;
+  max-width: 100%;
 `;
 
 const CenterRow = styled.div`
@@ -36,12 +38,12 @@ const CenterRow = styled.div`
 
 function App() {
   return (
-    <>
+    <div style={{ height: "100%" }}>
       <Header>
         <LogoImg src={logo} alt="Extra Life 2019" />
         <DonationStatus />
       </Header>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", height: "84%" }}>
         <Sidebar />
         <Body>
           <CenterRow>
@@ -50,7 +52,7 @@ function App() {
           </CenterRow>
         </Body>
       </div>
-    </>
+    </div>
   );
 }
 

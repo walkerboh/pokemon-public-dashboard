@@ -25,11 +25,11 @@ const DonationContainer = styled.div`
   width: 100%;
 
   > div:first-child {
-    width: 20%;
+    width: 25%;
   }
 
   > div:last-child {
-    width: 80%;
+    width: 75%;
   }
 `;
 

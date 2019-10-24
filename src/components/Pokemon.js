@@ -35,11 +35,11 @@ const PokeballDisplay = ({ total, alive }) => {
     .fill(1)
     .map((_, ind) => {
       if (ind < alive) {
-        return <img src={pokeball} alt="Pokeball" />;
+        return <img src={pokeball} key={ind} alt="Pokeball" />;
       } else if (ind < total) {
-        return <img src={pokeballDefeat} alt="Defeated Pokeball" />;
+        return <img src={pokeballDefeat} key={ind} alt="Defeated Pokeball" />;
       } else {
-        return <img src={pokeballEmpty} alt="Empty Pokeball" />;
+        return <img src={pokeballEmpty} key={ind} alt="Empty Pokeball" />;
       }
     });
 

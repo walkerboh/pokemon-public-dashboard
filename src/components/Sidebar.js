@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import Fact from "./Fact";
 
 const SidebarContainer = styled.div`
   width: 20%;
@@ -30,6 +31,7 @@ const Sidebar = () => (
     <div>
       <a href="https://www.extra-life.org">Learn more about Extra Life!</a>
     </div>
+    <Fact />
   </SidebarContainer>
 );
 

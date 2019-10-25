@@ -33,3 +33,15 @@ export const fetchPokemonStatusSuccessAction = payload => ({
   type: FETCH_POKEMON_STATUS_SUCCESS,
   payload
 });
+
+export const FETCH_FACT = "FETCH_FACT";
+export const FETCH_FACT_SUCCESS = "FETCH_FACT_SUCCESS";
+
+export const fetchFactAction = () => ({
+  type: FETCH_FACT
+});
+
+export const fetchFactSuccessAction = payload => ({
+  type: FETCH_FACT_SUCCESS,
+  payload
+});

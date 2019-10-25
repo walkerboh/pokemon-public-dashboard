@@ -3,7 +3,8 @@ import {
   switchMap,
   map,
   concatMap,
-  distinctUntilChanged
+  distinctUntilChanged,
+  withLatestFrom
 } from "rxjs/operators";
 import { interval } from "rxjs";
 import {
@@ -12,7 +13,9 @@ import {
   FETCH_DONATION_STATUS,
   fetchDonationsSuccessAction,
   FETCH_POKEMON_STATUS,
-  fetchPokemonStatusSuccessAction
+  fetchPokemonStatusSuccessAction,
+  FETCH_FACT,
+  fetchFactSuccessAction
 } from "./actions";
 import { isEqual } from "lodash";
 
@@ -81,3 +84,31 @@ const fetchPokemonStatus = ajax =>
   ajax({
     url: "https://dystortion.tv/api/api/status/pokemon"
   }).pipe(map(({ response }) => fetchPokemonStatusSuccessAction(response)));
+
+export const fetchFactEpic = (action$, _, { ajax }) =>
+  action$.pipe(
+    ofType(FETCH_FACT),
+    switchMap(() => fetchFact(ajax))
+  );
+
+export const fetchFactRepeatEpic = (action$, state$, { ajax }) => {
+  return action$.pipe(
+    ofType(FETCH_FACT),
+    switchMap(() =>
+      interval(1000 * 5).pipe(
+        withLatestFrom(state$),
+        concatMap(([_, { fact: { id } }]) => {
+          return fetchFact(ajax, id);
+        }),
+        distinctUntilChanged(isEqual)
+      )
+    )
+  );
+};
+
+const fetchFact = (ajax, id) => {
+  const queryString = id ? `?id=${id}` : "";
+  return ajax({
+    url: `https://dystortion.tv/api/api/status/fact${queryString}`
+  }).pipe(map(({ response }) => fetchFactSuccessAction(response)));
+};

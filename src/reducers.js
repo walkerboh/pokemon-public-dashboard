@@ -2,7 +2,8 @@ import {
   GET_GIVEAWAYS_SUCCESS,
   FETCH_DONATION_STATUS_SUCCESS,
   FETCH_POKEMON_STATUS_SUCCESS,
-  FETCH_FACT_SUCCESS
+  FETCH_FACT_SUCCESS,
+  FETCH_PRIZE_SUCCESS
 } from "./actions";
 
 const initialState = {
@@ -33,6 +34,11 @@ export const efApp = (state = initialState, action) => {
       return {
         ...state,
         fact: action.payload.fact
+      };
+    case FETCH_PRIZE_SUCCESS:
+      return {
+        ...state,
+        prize: action.payload
       };
     default:
       return state;

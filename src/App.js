@@ -33,7 +33,9 @@ const LogoImg = styled.img`
 
 const CenterRow = styled.div`
   display: flex;
-  justify-content: space-around;
+  > div {
+    width: 50%;
+  }
 `;
 
 function App() {
@@ -47,8 +49,12 @@ function App() {
         <Sidebar />
         <Body>
           <CenterRow>
-            <Pokemon />
-            <Giveaways />
+            <div>
+              <Pokemon />
+            </div>
+            <div>
+              <Giveaways />
+            </div>
           </CenterRow>
         </Body>
       </div>

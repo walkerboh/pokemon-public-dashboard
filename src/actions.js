@@ -45,3 +45,15 @@ export const fetchFactSuccessAction = payload => ({
   type: FETCH_FACT_SUCCESS,
   payload
 });
+
+export const FETCH_PRIZE = "FETCH_PRIZE";
+export const FETCH_PRIZE_SUCCESS = "FETCH_PRIZE_SUCCESS";
+
+export const fetchPrizeAction = () => ({
+  type: FETCH_PRIZE
+});
+
+export const fetchPrizeSuccessAction = payload => ({
+  type: FETCH_PRIZE_SUCCESS,
+  payload
+});

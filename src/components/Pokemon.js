@@ -30,6 +30,20 @@ const TrainerName = styled.div`
   font-size: 1.5rem;
 `;
 
+const getGym = gym => {
+  if (gym === "EliteFourLance") {
+    return " - Champion";
+  } else if (gym === "EliteFourRed") {
+    return "";
+  } else if (gym.includes("EliteFour")) {
+    return " - Elite Four";
+  } else if (gym === "TeamRocket") {
+    return "";
+  } else {
+    return " - " + gym;
+  }
+};
+
 const PokeballDisplay = ({ total, alive }) => {
   const pokeballs = Array(6)
     .fill(1)
@@ -61,7 +75,8 @@ const Pokemon = ({ pokemon, fetchPokemon }) => {
   return (
     <Container>
       <TrainerName>
-        {pokemon.trainer.name} - {pokemon.gym}{" "}
+        {pokemon.trainer.name}
+        {getGym(pokemon.gym)}{" "}
         {badges[pokemon.trainer.name] && (
           <img src={badges[pokemon.trainer.name]} alt="Badge" />
         )}

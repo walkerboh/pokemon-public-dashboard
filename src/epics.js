@@ -15,7 +15,9 @@ import {
   FETCH_POKEMON_STATUS,
   fetchPokemonStatusSuccessAction,
   FETCH_FACT,
-  fetchFactSuccessAction
+  fetchFactSuccessAction,
+  fetchPrizeSuccessAction,
+  FETCH_PRIZE
 } from "./actions";
 import { isEqual } from "lodash";
 
@@ -23,17 +25,6 @@ export const fetchGiveawaysEpic = (action$, _, { ajax }) =>
   action$.pipe(
     ofType(GET_GIVEAWAYS),
     switchMap(() => fetchGiveaways(ajax))
-  );
-
-export const getGiveawaysRepeatEpic = (action$, _, { ajax }) =>
-  action$.pipe(
-    ofType(GET_GIVEAWAYS),
-    switchMap(() =>
-      interval(1000 * 60 * 5).pipe(
-        concatMap(() => fetchGiveaways(ajax)),
-        distinctUntilChanged(isEqual)
-      )
-    )
   );
 
 const fetchGiveaways = ajax =>
@@ -95,7 +86,7 @@ export const fetchFactRepeatEpic = (action$, state$, { ajax }) => {
   return action$.pipe(
     ofType(FETCH_FACT),
     switchMap(() =>
-      interval(1000 * 5).pipe(
+      interval(1000 * 60 * 2.5).pipe(
         withLatestFrom(state$),
         concatMap(([_, { fact: { id } }]) => {
           return fetchFact(ajax, id);
@@ -112,3 +103,25 @@ const fetchFact = (ajax, id) => {
     url: `https://dystortion.tv/api/api/status/fact${queryString}`
   }).pipe(map(({ response }) => fetchFactSuccessAction(response)));
 };
+
+export const fetchPrizeEpic = (action$, _, { ajax }) =>
+  action$.pipe(
+    ofType(FETCH_PRIZE),
+    switchMap(() => fetchPrize(ajax))
+  );
+
+export const fetchPrizeRepeatEpic = (action$, _, { ajax }) =>
+  action$.pipe(
+    ofType(FETCH_PRIZE),
+    switchMap(() =>
+      interval(1000 * 60).pipe(
+        concatMap(() => fetchPrize(ajax)),
+        distinctUntilChanged(isEqual)
+      )
+    )
+  );
+
+const fetchPrize = ajax =>
+  ajax({
+    url: `https://dystortion.tv/api/api/status/prize`
+  }).pipe(map(({ response }) => fetchPrizeSuccessAction(response)));

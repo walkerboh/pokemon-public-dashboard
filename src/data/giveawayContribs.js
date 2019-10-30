@@ -194,7 +194,7 @@ const giveawayContribs = {
       ...pixelstudio
     }
   ],
-  Claire: [{ prize: "Legend of Zelda Prints", ...pixelstudio }],
+  Clair: [{ prize: "Legend of Zelda Prints", ...pixelstudio }],
   "Team Rocket": [
     {
       prize: "Entire Prize",

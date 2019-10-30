@@ -45,13 +45,14 @@ const getGym = gym => {
 };
 
 const PokeballDisplay = ({ total, alive }) => {
+  const dead = total - alive;
   const pokeballs = Array(6)
     .fill(1)
     .map((_, ind) => {
-      if (ind < alive) {
-        return <img src={pokeball} key={ind} alt="Pokeball" />;
+      if (ind < dead) {
+        return <img src={pokeballDefeat} key={ind} alt="Pokeball" />;
       } else if (ind < total) {
-        return <img src={pokeballDefeat} key={ind} alt="Defeated Pokeball" />;
+        return <img src={pokeball} key={ind} alt="Defeated Pokeball" />;
       } else {
         return <img src={pokeballEmpty} key={ind} alt="Empty Pokeball" />;
       }

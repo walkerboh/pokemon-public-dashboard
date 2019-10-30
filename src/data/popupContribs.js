@@ -10,14 +10,19 @@ const pixelstudio = {
   facebook: "pixels2dio"
 };
 
+const dystortion = {
+  name: "Dystortion.tv",
+  twitter: "Chase_of_Spades"
+};
+
 const popupContribs = {
   DedenneCordKeeper: {
     prize: "Dedenne Cord Keeper",
-    name: "Dystortion.tv"
+    ...dystortion
   },
   Diglet: {
     prize: "Diglet Plush",
-    name: "Dystortion.tv"
+    ...dystortion
   },
   Ditto: {
     prize: "Ditto Plush",

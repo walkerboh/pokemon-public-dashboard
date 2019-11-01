@@ -8,6 +8,12 @@ import pokeballDefeat from "../images/pokeballs/pokeball_defeat.png";
 import pokeballEmpty from "../images/pokeballs/pokeball_null.png";
 import badges from "../images/badges";
 import trainers from "../images/trainers";
+import pokemonImages from "../images/pokemon";
+
+const PokemonSection = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -28,6 +34,10 @@ const TrainerName = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 1.5rem;
+`;
+
+const PokemonImg = styled.img`
+  filter: ${({ alive }) => (alive ? "saturate(1)" : "saturate(0)")};
 `;
 
 const getGym = gym => {
@@ -74,31 +84,41 @@ const Pokemon = ({ pokemon, fetchPokemon }) => {
   }
 
   return (
-    <Container>
-      <TrainerName>
-        {pokemon.trainer.name}
-        {getGym(pokemon.gym)}{" "}
-        {badges[pokemon.trainer.name] && (
-          <img src={badges[pokemon.trainer.name]} alt="Badge" />
-        )}
-      </TrainerName>
-      <div>
-        <img
-          src={trainers[pokemon.trainer.name]}
-          alt={pokemon.trainer.name}
-          height={500}
+    <PokemonSection>
+      <Container>
+        <TrainerName>
+          {pokemon.trainer.name}
+          {badges[pokemon.trainer.name] && (
+            <img src={badges[pokemon.trainer.name]} alt="Badge" />
+          )}
+        </TrainerName>
+        <div>
+          <img
+            src={trainers[pokemon.trainer.name]}
+            alt={pokemon.trainer.name}
+            height={500}
+          />
+        </div>
+        <PokeballDisplay
+          total={pokemon.trainer.totalPokemon}
+          alive={pokemon.trainer.pokemonLeft}
         />
-      </div>
-      <PokeballDisplay
-        total={pokemon.trainer.totalPokemon}
-        alive={pokemon.trainer.pokemonLeft}
-      />
-      <div>Current Pokemon: {pokemon.pokemon.name}</div>
-      <div>
-        Current Health: {pokemon.pokemon.currentHealth} /{" "}
-        {pokemon.pokemon.startingHealth}
-      </div>
-    </Container>
+        <div>Current Pokemon: {pokemon.pokemon.name}</div>
+        <div>
+          Current Health: {pokemon.pokemon.currentHealth} /{" "}
+          {pokemon.pokemon.startingHealth}
+        </div>
+      </Container>
+      <Container>
+        {pokemon.pokemonStatus.map(p => (
+          <PokemonImg
+            src={pokemonImages[p.name.toLowerCase()]}
+            alt={p.name}
+            alive={p.alive}
+          />
+        ))}
+      </Container>
+    </PokemonSection>
   );
 };
 

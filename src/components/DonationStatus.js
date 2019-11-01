@@ -8,6 +8,10 @@ const OuterContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 15%;
+
+  @media screen and (max-width: 1100px) {
+    padding: 0 2%;
+  }
 `;
 
 const Container = styled.div`

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import React, { useState } from "react";
 import styled from "styled-components/macro";
-import { getGiveawaysAction } from "../actions";
 import { Carousel } from "react-responsive-carousel";
 import giveawayImages from "../images/giveaways";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -15,20 +13,26 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  h2,
+  h3,
+  h4 {
+    margin: 0.75rem;
+  }
 `;
 
 const updateDetails = (index, set) => {
   set(index);
 };
 
-export const Giveaways = ({ giveaways, fetchGiveaways }) => {
-  useEffect(() => void fetchGiveaways(), [fetchGiveaways]);
+export const Giveaways = () => {
+  // useEffect(() => void fetchGiveaways(), [fetchGiveaways]);
 
   const [currentDetails, setDetails] = useState(0);
 
-  if (!Array.isArray(giveaways)) {
-    return null;
-  }
+  // if (!Array.isArray(giveaways)) {
+  //   return null;
+  // }
 
   const name = Object.keys(giveawayImages)[currentDetails];
   const details = giveawayContribs[name];
@@ -94,17 +98,14 @@ const ContributorDetails = ({ details }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    giveaways: state.giveaways
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     giveaways: state.giveaways
+//   };
+// };
 
-const mapDispatchToProps = {
-  fetchGiveaways: getGiveawaysAction
-};
+// const mapDispatchToProps = {
+//   fetchGiveaways: getGiveawaysAction
+// };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Giveaways);
+export default Giveaways;

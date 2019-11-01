@@ -33,8 +33,19 @@ const LogoImg = styled.img`
 
 const CenterRow = styled.div`
   display: flex;
+  height: 100%;
   > div {
     width: 50%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+
+    > div {
+      width: 100;
+    }
   }
 `;
 

@@ -6,6 +6,26 @@ import popupContribs from "../data/popupContribs";
 import SocialMediaLink from "./SocialMediaLink";
 import { pick } from "lodash";
 
+const OuterContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: indianred;
+  border: 5px solid maroon;
+  border-radius: 30px;
+  margin-top: 5px;
+
+  h4 {
+    width: 25%;
+  }
+
+  h3,
+  h4 {
+    margin: 0.75rem;
+  }
+`;
+
 const PrizeContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,17 +50,19 @@ const Prize = ({ prize, fetchPrize }) => {
   ]);
 
   return (
-    <PrizeContainer>
-      <h3>Limited Time Prize!</h3>
-      <div>Prize: {prizeDetails.prize}</div>
-      <div>Contributor: {prizeDetails.name}</div>
-      <div>
-        {Object.keys(social).map(s => (
-          <SocialMediaLink key={s} type={s} value={social[s]} />
-        ))}
-      </div>
+    <OuterContainer>
+      <PrizeContainer>
+        <h3>Limited Time Prize!</h3>
+        <div>Prize: {prizeDetails.prize}</div>
+        <div>Contributor: {prizeDetails.name}</div>
+        <div>
+          {Object.keys(social).map(s => (
+            <SocialMediaLink key={s} type={s} value={social[s]} />
+          ))}
+        </div>
+      </PrizeContainer>
       <h4>Donate now to be entered to win this extra prize.</h4>
-    </PrizeContainer>
+    </OuterContainer>
   );
 };
 

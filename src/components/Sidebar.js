@@ -35,7 +35,10 @@ const Sidebar = () => (
       </div>
       <Fact />
     </div>
-    <div>If something goes wrong with this page, please yell at Evan.</div>
+    <div>
+      <div style={{ color: "#efefff" }}>Chase is butts™ ♥</div>
+      <div>If something goes wrong with this page, please yell at Evan.</div>
+    </div>
   </SidebarContainer>
 );
 

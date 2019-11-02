@@ -3,6 +3,24 @@ import { connect } from "react-redux";
 import { fetchDonationsAction } from "../actions";
 import styled from "styled-components/macro";
 import numbro from "numbro";
+import { random } from "lodash";
+
+const noCommentMsgs = [
+  "They were too busy to leave a comment.",
+  "They were too entertained by the stream to comment.",
+  "This comment was delayed in the mail.",
+  "Pika Pika",
+  "ERROR 404 - Comment Not Found",
+  "ERROR 500 - Internal Comment Error",
+  "This is not the comment you are looking for.",
+  "Donating is rad - Chase 2019",
+  "Eat. Sleep. Donate. Repeat.",
+  "This donation was a no joke amount of American dollars for the big beautiful children."
+];
+
+const NoComment = styled.span`
+  font-style: italic;
+`;
 
 const OuterContainer = styled.div`
   display: flex;
@@ -75,7 +93,11 @@ const DonationStatus = ({ donations, fetchDonations }) => {
           </div>
           <div>
             <div>Comment</div>
-            <div>{donations.latestDonation.message || "None"}</div>
+            <div>
+              {donations.latestDonation.message || (
+                <NoComment>{noCommentMsgs[random(0, 9)]}</NoComment>
+              )}
+            </div>
           </div>
         </DonationContainer>
       )}

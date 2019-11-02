@@ -17,6 +17,11 @@ const crowsmack = {
   website: "https://crowsmackart.com/"
 };
 
+const fiends = {
+  name: "Friendly Fiends Design",
+  etsy: "FriendlyFiendsDesign"
+};
+
 const dystortion = {
   name: "Dystortion.tv",
   twitter: "Chase_of_Spades"
@@ -57,8 +62,7 @@ const giveawayContribs = {
     },
     {
       prize: "Link Painting",
-      name: "Friendly Fiends Design",
-      etsy: "FriendlyFiendsDesign"
+      ...fiends
     }
   ],
   Jasmine: [
@@ -186,12 +190,20 @@ const giveawayContribs = {
   ],
   Bugsy: [
     {
-      prize: "Mario Plushes & Paintings",
+      prize: "Piranha Plant & Mushrooms Plushes",
       ...alyssa
+    },
+    {
+      prize: "Mini Canvas Paintings",
+      ...fiends
     },
     {
       prize: "Starman Stout Canvas",
       ...pixelstudio
+    },
+    {
+      prize: "Spooky Luigi Mini Print",
+      ...crowsmack
     }
   ],
   Clair: [{ prize: "Legend of Zelda Prints", ...pixelstudio }],

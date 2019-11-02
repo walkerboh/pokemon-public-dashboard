@@ -51,6 +51,8 @@ export const Giveaways = () => {
         showIndicators={false}
         infiniteLoop={true}
         selectedItem={currentDetails}
+        interval={10000}
+        autoPlay={true}
         onChange={index => updateDetails(index, setDetails)}
       >
         {Object.keys(giveawayImages).map(g => (

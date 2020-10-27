@@ -5,7 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import { createStore, applyMiddleware, compose } from "redux";
-import { efApp } from "./reducers";
+import { extraLife } from "./reducers";
 import { Provider } from "react-redux";
 
 import { combineEpics, createEpicMiddleware } from "redux-observable";
@@ -17,7 +17,7 @@ const epicMiddleware = createEpicMiddleware({ dependencies: { ajax } });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  efApp,
+  extraLife,
   composeEnhancers(applyMiddleware(epicMiddleware))
 );
 

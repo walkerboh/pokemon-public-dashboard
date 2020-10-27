@@ -1,28 +1,41 @@
 import React from "react";
-import logo from "./ExtraLife2019Logo.png";
-import styled from "styled-components/macro";
-import Giveaways from "./components/Giveaways";
-import DonationStatus from "./components/DonationStatus";
-import Pokemon from "./components/Pokemon";
-import Sidebar from "./components/Sidebar";
-
-const Body = styled.div`
-  width: 100%;
-  border: 1px solid black;
-  border-right: 0;
-  border-bottom: 0;
-`;
+import logo from "./SmallWebLogo.png";
+import styled from "styled-components";
+import Donations from "./components/Donations";
 
 const Header = styled.div`
   display: flex;
   background-color: #efefff;
-  height: 16%;
+  height: 15%;
 
   > div {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    justify-content: space-evenly;
     align-items: center;
+  }
+`;
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 85%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  @media only screen and (min-width: 1000px) {
+    > div {
+      min-width: 500px;
+      width: 33%;
+      text-align: center;
+    }
+  }
+
+  @media only screen and (min-width: 600px) and (max-width: 999px) {
+    > div {
+      width: 50%;
+      text-align: center;
+    }
   }
 `;
 
@@ -53,22 +66,16 @@ function App() {
   return (
     <div style={{ height: "100%" }}>
       <Header>
-        <LogoImg src={logo} alt="Extra Life 2019" />
-        <DonationStatus />
+        <div>
+          <img src={logo} alt="Extra Life 2020" />
+          <div>Stats</div>
+        </div>
       </Header>
-      <div style={{ display: "flex", height: "84%" }}>
-        <Sidebar />
-        <Body>
-          <CenterRow>
-            <div>
-              <Pokemon />
-            </div>
-            <div>
-              <Giveaways />
-            </div>
-          </CenterRow>
-        </Body>
-      </div>
+      <Body>
+        <Donations />
+        <div>Giveaways</div>
+        <div>Prizes</div>
+      </Body>
     </div>
   );
 }

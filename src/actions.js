@@ -7,6 +7,9 @@ export const GET_DONATIONS_SUCCESS = "GET_DONATIONS_SUCCESS";
 export const GET_TARGET_PRIZES = "GET_TARGET_PRIZES";
 export const GET_TARGET_PRIZES_SUCCESS = "GET_TARGET_PRIZES_SUCCESS";
 
+export const GET_TWITCH = "GET_TWITCH";
+export const GET_TWITCH_SUCCESS = "GET_TWITCH_SUCCESS";
+
 export const getSummaryAction = () => ({
   type: GET_SUMMARY,
 });
@@ -31,5 +34,14 @@ export const getTargetPrizesAction = () => ({
 
 export const getTargetPrizesSuccessAction = payload => ({
   type: GET_TARGET_PRIZES_SUCCESS,
+  payload,
+});
+
+export const getTwitchAction = () => ({
+  type: GET_TWITCH,
+});
+
+export const getTwitchSuccessAction = payload => ({
+  type: GET_TWITCH_SUCCESS,
   payload,
 });

@@ -2,62 +2,46 @@ import React from "react";
 import logo from "./SmallWebLogo.png";
 import styled from "styled-components";
 import Donations from "./components/Donations";
+import Summary from "./components/Summary";
+import Twitch from "./components/Twitch";
+import Giveaways from "./components/Giveaways";
 
 const Header = styled.div`
   display: flex;
   background-color: #efefff;
-  height: 15%;
+  width: 100%;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 170px;
 
-  > div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
+  @media only screen and (min-width: 800px) {
+    flex-direction: row;
+  }
+
+  img {
+    max-width: 302px;
   }
 `;
 
 const Body = styled.div`
   display: flex;
   flex-direction: row;
-  height: 85%;
+  height: 82%;
   flex-wrap: wrap;
   justify-content: space-around;
 
-  @media only screen and (min-width: 1000px) {
-    > div {
-      min-width: 500px;
-      width: 33%;
-      text-align: center;
-    }
-  }
-
-  @media only screen and (min-width: 600px) and (max-width: 999px) {
-    > div {
-      width: 50%;
-      text-align: center;
-    }
-  }
-`;
-
-const LogoImg = styled.img`
-  max-height: 100%;
-  max-width: 100%;
-`;
-
-const CenterRow = styled.div`
-  display: flex;
-  height: 100%;
   > div {
-    width: 50%;
-  }
+    width: 100%;
+    text-align: center;
 
-  @media screen and (max-width: 1000px) {
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
+    @media only screen and (min-width: 800px) {
+      width: 66%;
 
-    > div {
-      width: 100;
+      :first-child {
+        width: 33%;
+      }
     }
   }
 `;
@@ -66,15 +50,13 @@ function App() {
   return (
     <div style={{ height: "100%" }}>
       <Header>
-        <div>
-          <img src={logo} alt="Extra Life 2020" />
-          <div>Stats</div>
-        </div>
+        <img src={logo} alt="Extra Life 2020" />
+        <Summary />
+        <Twitch />
       </Header>
       <Body>
         <Donations />
-        <div>Giveaways</div>
-        <div>Prizes</div>
+        <Giveaways />
       </Body>
     </div>
   );

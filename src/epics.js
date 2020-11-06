@@ -13,6 +13,8 @@ import {
   getSummarySuccessAction,
   GET_TARGET_PRIZES,
   getTargetPrizesSuccessAction,
+  GET_TWITCH,
+  getTwitchSuccessAction,
 } from "./actions";
 import { isEqual } from "lodash";
 
@@ -35,7 +37,7 @@ export const fetchSummaryRepeatEpic = (action$, _, { ajax }) =>
 
 const fetchSummary = ajax =>
   ajax({
-    url: "https://localhost:44369/api/status/summary",
+    url: "https://dystortion.tv/extralife/api/status/summary",
   }).pipe(map(({ response }) => getSummarySuccessAction(response)));
 
 export const fetchDonationsEpic = (action$, _, { ajax }) =>
@@ -57,7 +59,7 @@ export const fetchDonationsRepeatEpic = (action$, _, { ajax }) =>
 
 const fetchDonations = ajax =>
   ajax({
-    url: "https://localhost:44369/api/status/donations",
+    url: "https://dystortion.tv/extralife/api/status/donations",
   }).pipe(map(({ response }) => getDonationsSuccessAction(response)));
 
 export const fetchTargetPrizesEpic = (action$, _, { ajax }) =>
@@ -79,5 +81,27 @@ export const fetchTargetPrizesRepeatEpic = (action$, _, { ajax }) =>
 
 const fetchTargetPrizes = ajax =>
   ajax({
-    url: "https://localhost:44369/api/status/prizes",
+    url: "https://dystortion.tv/extralife/api/status/prizes",
   }).pipe(map(({ response }) => getTargetPrizesSuccessAction(response)));
+
+export const fetchTwitchEpic = (action$, _, { ajax }) =>
+  action$.pipe(
+    ofType(GET_TWITCH),
+    switchMap(() => fetchTwitch(ajax))
+  );
+
+export const fetchTwitchRepeatEpic = (action$, _, { ajax }) =>
+  action$.pipe(
+    ofType(GET_TWITCH),
+    switchMap(() =>
+      interval(1000 * 60).pipe(
+        concatMap(() => fetchTwitch(ajax)),
+        distinctUntilChanged(isEqual)
+      )
+    )
+  );
+
+const fetchTwitch = ajax =>
+  ajax({
+    url: "https://dystortion.tv/extralife/api/status/streams",
+  }).pipe(map(({ response }) => getTwitchSuccessAction(response)));
